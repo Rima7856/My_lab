@@ -69,9 +69,6 @@ def main_fk(x):
         return text
     hours, minutes = map(int, x.split())
 
-
-
-
     padej_h = what_padej_hs(hours)
     rovno, padej_m = what_padej_ms(minutes)
     new_hours, vrem_sut = what_vrem_sut(hours)
