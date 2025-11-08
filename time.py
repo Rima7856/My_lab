@@ -1,4 +1,4 @@
-def what_padej_HS(h):
+def what_padej_hs(h):
     h = h % 12
     if h == 1:
         padej = 'час'
@@ -7,7 +7,7 @@ def what_padej_HS(h):
     else:
         padej = 'часов'
     return padej
-def what_padej_MS(m):
+def what_padej_ms(m):
     rovno = m == 0
     if 5 <= m <= 20:
         padej = 'минут'
@@ -37,16 +37,16 @@ def what_vrem_sut(h):
         time, v_s = str(h % 12) , 'вечера'
     return time, v_s
 def err(x):
-    A = x.split()
-    if len(A) != 2:
+    lst = x.split()
+    if len(lst) != 2:
         return True, 'Введите ровно два числа (часы и минуты) через пробел'
-    err_h = not (A[0].isdigit())
-    err_m = not (A[1].isdigit())
+    err_h = not (lst[0].isdigit())
+    err_m = not (lst[1].isdigit())
     if not err_m:
-        minutes = int(A[1])
+        minutes = int(lst[1])
         err_m = not (0 <= minutes <= 59)
     if not err_h:
-        hours = int(A[0])
+        hours = int(lst[0])
         err_h = not (0 <= hours <= 23)
     is_err = err_m or err_h
     text = ''
@@ -64,16 +64,16 @@ def err(x):
 
     return is_err, text
 def main_fk(x):
-    err_T, text = err(x)
-    if err_T:
+    err_status, text = err(x)
+    if err_status:
         return text
     hours, minutes = map(int, x.split())
 
 
 
 
-    padej_h = what_padej_HS(hours)
-    rovno, padej_m = what_padej_MS(minutes)
+    padej_h = what_padej_hs(hours)
+    rovno, padej_m = what_padej_ms(minutes)
     new_hours, vrem_sut = what_vrem_sut(hours)
 
     if hours == 0 and minutes == 0:
