@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3ffed52-7b33-4d72-ba11-d7243cdf7f37" name="Changes" comment="Change time.py: &quot;Добавлен красивый вывод ошибок и текста (+ библиотека colorama)&quot;" />
+    <list default="true" id="d3ffed52-7b33-4d72-ba11-d7243cdf7f37" name="Changes" comment="Change time.py: &quot;Убрал колораму и изменил ф-ю times_of_day&quot;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="lab_1" />
+        <entry key="$PROJECT_DIR$" value="lab_2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,15 +46,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Python.time.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.time.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "#2 on lab__1",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="time" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="My_lab" />
@@ -140,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762882758823</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Change time.py: &quot;Убрал колораму и изменил ф-ю times_of_day&quot;">
+      <option name="closed" value="true" />
+      <created>1762884646244</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762884646244</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -148,6 +157,7 @@
     <MESSAGE value="Create new file time.py" />
     <MESSAGE value="Change time.py" />
     <MESSAGE value="Change time.py: &quot;Добавлен красивый вывод ошибок и текста (+ библиотека colorama)&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change time.py: &quot;Добавлен красивый вывод ошибок и текста (+ библиотека colorama)&quot;" />
+    <MESSAGE value="Change time.py: &quot;Убрал колораму и изменил ф-ю times_of_day&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change time.py: &quot;Убрал колораму и изменил ф-ю times_of_day&quot;" />
   </component>
 </project>

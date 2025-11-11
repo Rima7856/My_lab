@@ -92,4 +92,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-# Вот сводка по colorama https://pythonru.com/biblioteki/tsvetnoj-vyvod-teksta-v-python-colorama
