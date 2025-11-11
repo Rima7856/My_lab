@@ -1,4 +1,3 @@
-from colorama import Fore, Style
 def hours_case(h):
     h = h % 12
     if h == 1:
@@ -25,7 +24,7 @@ def minuts_case(m):
     return rovno, padej
 def times_of_day(h):
     if h == 0:
-        return 12, 'ночи'
+        return '12', 'ночи'
     elif 1 <= h <= 5:
         time, v_s = str(h), 'ночи'
     elif 6 <= h <= 11:
@@ -83,8 +82,8 @@ def main():
     input_time = input('Ваше время: ')
     err_status, text = err(input_time)
     while err_status:
-        print(Fore.RED + text)
-        print(Style.RESET_ALL + 'Введите повторно время в формате: "часы минуты"')
+        print(text)
+        print('Введите повторно время в формате: "часы минуты"')
         print()
         input_time = input('Ваше время: ')
         err_status, text = err(input_time)
