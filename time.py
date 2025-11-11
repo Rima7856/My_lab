@@ -15,17 +15,13 @@ def minuts_case(m):
         last_cou = m % 10
         if last_cou == 1:
             padej = 'минута'
-        elif last_cou == 0:
-            padej = 'минут'
-        elif last_cou < 5:
+        elif 2 <= last_cou < 5:
             padej = 'минуты'
         else:
             padej = 'минут'
     return rovno, padej
 def times_of_day(h):
-    if h == 0:
-        return '12', 'ночи'
-    elif 1 <= h <= 5:
+    if 1 <= h <= 5:
         time, v_s = str(h), 'ночи'
     elif 6 <= h <= 11:
         time, v_s = str(h), 'утра'
@@ -52,30 +48,31 @@ def err(x):
     text = ''
 
     if is_err:
-        input_h_err = 'часы должны быть от 0 до 23'
-        input_m_err = 'минуты должны быть от 0 до 59'
         text = 'Введены недопустимые данные: '
-        if err_h and err_m:
-            text += f'{input_h_err}, {input_m_err}'
-        elif err_m:
-            text += input_m_err
-        else:
-            text += input_h_err
+        errors = []
+
+        if err_h:
+            errors.append('часы должны быть от 0 до 23')
+        if err_m:
+            errors.append('минуты должны быть от 0 до 59')
+        text += ', '.join(errors)
 
     return is_err, text
 def ready_text(hours, minutes):
-    padej_h = hours_case(hours)
-    rovno, padej_m = minuts_case(minutes)
-    new_hours, vrem_sut = times_of_day(hours)
-
     if hours == 0 and minutes == 0:
         return 'полночь'
     elif hours == 12 and minutes == 0:
         return 'полдень'
+
+    padej_h = hours_case(hours)
+    rovno, padej_m = minuts_case(minutes)
+    new_hours, vrem_sut = times_of_day(hours)
+
     if rovno:
         return f'{new_hours} {padej_h} {vrem_sut} ровно'
     else:
         return f'{new_hours} {padej_h} {minutes} {padej_m} {vrem_sut}'
+
 def main():
     print('Введите время в формате: "часы минуты"')
     print()
