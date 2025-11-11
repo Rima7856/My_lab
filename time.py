@@ -1,4 +1,5 @@
-def what_padej_hs(h):
+from colorama import Fore, Style
+def hours_case(h):
     h = h % 12
     if h == 1:
         padej = 'час'
@@ -7,7 +8,7 @@ def what_padej_hs(h):
     else:
         padej = 'часов'
     return padej
-def what_padej_ms(m):
+def minuts_case(m):
     rovno = m == 0
     if 5 <= m <= 20:
         padej = 'минут'
@@ -22,7 +23,7 @@ def what_padej_ms(m):
         else:
             padej = 'минут'
     return rovno, padej
-def what_vrem_sut(h):
+def times_of_day(h):
     if h == 0:
         return 12, 'ночи'
     elif 1 <= h <= 5:
@@ -63,23 +64,33 @@ def err(x):
             text += input_h_err
 
     return is_err, text
-def main_fk(x):
-    err_status, text = err(x)
-    if err_status:
-        return text
-    hours, minutes = map(int, x.split())
-
-    padej_h = what_padej_hs(hours)
-    rovno, padej_m = what_padej_ms(minutes)
-    new_hours, vrem_sut = what_vrem_sut(hours)
+def ready_text(hours, minutes):
+    padej_h = hours_case(hours)
+    rovno, padej_m = minuts_case(minutes)
+    new_hours, vrem_sut = times_of_day(hours)
 
     if hours == 0 and minutes == 0:
         return 'полночь'
-    elif hours == 12 and minutes ==0:
+    elif hours == 12 and minutes == 0:
         return 'полдень'
     if rovno:
         return f'{new_hours} {padej_h} {vrem_sut} ровно'
     else:
         return f'{new_hours} {padej_h} {minutes} {padej_m} {vrem_sut}'
+def main():
+    print('Введите время в формате: "часы минуты"')
+    print()
+    input_time = input('Ваше время: ')
+    err_status, text = err(input_time)
+    while err_status:
+        print(Fore.RED + text)
+        print(Style.RESET_ALL + 'Введите повторно время в формате: "часы минуты"')
+        print()
+        input_time = input('Ваше время: ')
+        err_status, text = err(input_time)
+    hours, minutes = map(int, input_time.split())
+    print(ready_text(hours, minutes))
 
-print(main_fk(input()))
+if __name__ == '__main__':
+    main()
+# Вот сводка по colorama https://pythonru.com/biblioteki/tsvetnoj-vyvod-teksta-v-python-colorama
