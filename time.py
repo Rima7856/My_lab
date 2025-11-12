@@ -21,7 +21,7 @@ def minuts_case(m):
             padej = 'минут'
     return rovno, padej
 def times_of_day(h):
-    if 1 <= h <= 5:
+    if 0 <= h <= 5:
         time, v_s = str(h), 'ночи'
     elif 6 <= h <= 11:
         time, v_s = str(h), 'утра'
