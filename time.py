@@ -1,8 +1,8 @@
 def hours_case(h):
-    h = h % 12
-    if h == 1:
+    h_12 = h % 12
+    if h_12 == 1:
         padej = 'час'
-    elif 2 <= h < 5:
+    elif 2 <= h_12 < 5:
         padej = 'часа'
     else:
         padej = 'часов'
