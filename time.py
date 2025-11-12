@@ -36,8 +36,8 @@ def err(x):
     lst = x.split()
     if len(lst) != 2:
         return True, 'Введите ровно два числа (часы и минуты) через пробел'
-    err_h = not (lst[0].isdigit())
-    err_m = not (lst[1].isdigit())
+    err_h = not (lst[0].isdigit()) or '-' in lst[0]
+    err_m = not (lst[1].isdigit()) or '-' in lst[1]
     if not err_m:
         minutes = int(lst[1])
         err_m = not (0 <= minutes <= 59)
