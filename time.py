@@ -25,12 +25,10 @@ def times_of_day(h):
         v_s = 'ночи'
     elif 6 <= h <= 11:
         v_s = 'утра'
-    elif 12 == h:
-        v_s = 'дня'
-    elif 13 <= h <= 17:
+    elif 12 <= h <= 17:
         v_s = 'дня'
     else:
-        v_s ='вечера'
+        v_s = 'вечера'
     return v_s
 def err(x):
     lst = x.split()
