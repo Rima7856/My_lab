@@ -22,16 +22,16 @@ def minuts_case(m):
     return rovno, padej
 def times_of_day(h):
     if 0 <= h <= 5:
-        time, v_s = str(h), 'ночи'
+        v_s = 'ночи'
     elif 6 <= h <= 11:
-        time, v_s = str(h), 'утра'
+        v_s = 'утра'
     elif 12 == h:
-        time, v_s = str(h), 'дня'
+        v_s = 'дня'
     elif 13 <= h <= 17:
-        time, v_s = str(h % 12) , 'дня'
+        v_s = 'дня'
     else:
-        time, v_s = str(h % 12) , 'вечера'
-    return time, v_s
+        v_s ='вечера'
+    return v_s
 def err(x):
     lst = x.split()
     if len(lst) != 2:
@@ -66,7 +66,7 @@ def ready_text(hours, minutes):
 
     padej_h = hours_case(hours)
     rovno, padej_m = minuts_case(minutes)
-    new_hours, vrem_sut = times_of_day(hours)
+    vrem_sut = times_of_day(hours)
 
     if rovno:
         return f'{new_hours} {padej_h} {vrem_sut} ровно'
