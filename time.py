@@ -1,12 +1,13 @@
 def hours_case(h):
     h_12 = h % 12
+    new_h = h_12 if h != 12 else 12
     if h_12 == 1:
         padej = 'час'
     elif 2 <= h_12 < 5:
         padej = 'часа'
     else:
         padej = 'часов'
-    return padej
+    return new_h, padej
 def minuts_case(m):
     rovno = m == 0
     if 5 <= m <= 20:
@@ -62,7 +63,7 @@ def ready_text(hours, minutes):
     elif hours == 12 and minutes == 0:
         return 'полдень'
 
-    padej_h = hours_case(hours)
+    new_hours, padej_h = hours_case(hours)
     rovno, padej_m = minuts_case(minutes)
     vrem_sut = times_of_day(hours)
 
