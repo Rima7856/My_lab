@@ -1,90 +1,171 @@
-def hours_case(h):
-    h_12 = h % 12
-    new_h = h_12 if h != 12 else 12
-    if h_12 == 1:
-        padej = 'час'
-    elif 2 <= h_12 < 5:
-        padej = 'часа'
-    else:
-        padej = 'часов'
-    return new_h, padej
-def minuts_case(m):
-    rovno = m == 0
-    if 5 <= m <= 20:
-        padej = 'минут'
-    else:
-        last_cou = m % 10
-        if last_cou == 1:
-            padej = 'минута'
-        elif 2 <= last_cou < 5:
-            padej = 'минуты'
+def check_input():
+    #Ввод и проверка ввода
+
+    while True: #бесконечный цикл проверки
+        userInput = input("Введите время в формате часы минуты: ").split() #запрос ввода и преобразование ввода в список
+        
+        if len(userInput) == 1 and (userInput[0]).lower() == "выход": #если длина списка = 1 и строчные символы строки = "выход" -> возвращаем "exit" и "exit"
+            return "exit", "exit"
+        
+        if len(userInput) == 2: #проверка, является длина ввода двум - если нет, выводим ошибку и просим ввод заново
+            hours = userInput[0]
+            minutes = userInput[1]
+            
+            if hours.isdigit() and minutes.isdigit(): #если часы и минуты являются числами - преобразуем часы и минуты в int значение
+                hours = int(hours) 
+                minutes = int(minutes)
+
+                checkHours = (0 <= hours < 24)
+                checkMinutes = (0 <= minutes < 60)
+
+                if checkHours and checkMinutes: #если часы и минуты находятся в допустимых значения - конец цикла проверки
+                    return hours, minutes
+                if not checkHours and checkMinutes: #если часы не находятся в допустимых значение - выводим ошибку и просим ввод заново
+                    print("Введены недопустимые данные: часы должны быть от 0 до 23.")
+                
+                if checkHours and not checkMinutes:
+                    print("Введены недопустимые данные: минуты должны быть от 0 до 59.") #если минуты не находятся в допустимых значениях - выводим ошибку и просим ввод заново
+                
+                if not checkHours and not checkMinutes:
+                    print("Введены недопустимые данные: часы должны быть от 0 до 23, минуты должны быть от 0 до 59.") #если и часы и минуты не находятся в допустимых значениях - выводим ошибку и просим ввод заново
+            
+            else:
+                print("Ошибка ввода: введите ровно два целых числа, разделенные пробелом.") #ввод не является числами или не являются положительными - выводим ошибку
         else:
-            padej = 'минут'
-    return rovno, padej
-def times_of_day(h):
-    if 0 <= h <= 5:
-        v_s = 'ночи'
-    elif 6 <= h <= 11:
-        v_s = 'утра'
-    elif 12 <= h <= 17:
-        v_s = 'дня'
+            print("Ошибка ввода: введите ровно два целых числа, разделенные пробелом.") #длина ввода не равна двум - выводим ошибку
+
+
+def padezh_hours(hours):
+    # функция падежа для часов
+    # преобразовываем часы в 12 часовой формат
+    # если часы = 0 -> "часов"
+    # если часы = 1, то присваем переменной "час"
+    # если часы от 2 до 4, то присваем переменной "часа"
+    # в остальных случаях присваем "часов"
+    # возвращаем падеж
+    twelve_format_hours = hours % 12
+    
+    padezh_h = ""
+    
+    if twelve_format_hours == 0:
+        padezh_h = "часов"
+    
+    elif twelve_format_hours == 1:
+        padezh_h = "час"
+    
+    elif 2 <= twelve_format_hours < 5:
+        padezh_h = "часа"
+    
     else:
-        v_s = 'вечера'
-    return v_s
-def err(x):
-    lst = x.split()
-    if len(lst) != 2:
-        return True, 'Введите ровно два числа (часы и минуты) через пробел'
-    err_h = not (lst[0].isdigit()) or '-' in lst[0]
-    err_m = not (lst[1].isdigit()) or '-' in lst[1]
-    if not err_m:
-        minutes = int(lst[1])
-        err_m = not (0 <= minutes <= 59)
-    if not err_h:
-        hours = int(lst[0])
-        err_h = not (0 <= hours <= 23)
-    is_err = err_m or err_h
-    text = ''
+        padezh_h = "часов"
+    
+    return padezh_h
 
-    if is_err:
-        text = 'Введены недопустимые данные: '
-        errors = []
+def padezh_minutes(minutes):
+    # функция падежа для минут
+    # если минуты от 10 до 20 -> "минут"
+    # если минуты = 0 -> "ровно"
+    # в остальных случаях: выбираем последнюю минуту, если она = 1 -> "минута", если от 2 до 4 -> "минуты", в остальных случаях -> "минут"
+    # возвращаем падеж
+    padezh_m = ""
 
-        if err_h:
-            errors.append('часы должны быть от 0 до 23')
-        if err_m:
-            errors.append('минуты должны быть от 0 до 59')
-        text += ', '.join(errors)
+    if 10 <= minutes < 21:
+        padezh_m = "минут"
+    
+    elif minutes == 0:
+        padezh_m = "ровно"
 
-    return is_err, text
-def ready_text(hours, minutes):
+    else:
+        last_minute = int(str(minutes)[-1])
+
+        if last_minute == 1:
+            padezh_m = "минута"
+            
+        elif 2 <= last_minute < 5:
+            padezh_m = "минуты"
+
+        else:
+            padezh_m = "минут"
+    return padezh_m
+
+def time_clock(hours):
+    # функция определения времени суток
+    # если часы от 0 до 5 -> "ночи"
+    # если часы от 6 до 11 -> "утра"
+    # если часы от 12 до 17 -> "дня"
+    # в остальных случаях -> "вечера"
+    # возвращаем время суток
+    clock = ""
+
+    if 0 <= hours < 6:
+        clock = "ночи"
+    
+    elif 6 <= hours < 12:
+        clock = "утра"
+
+    elif 12 <= hours < 18:
+        clock = "дня"
+
+    else:
+        clock = "вечера"
+
+    return clock
+
+def full_time_output(hours, minutes, padezh_h, padezh_m, clock):
+    # функция составления итогового результата
+    # смотрим особый случай: если часы != 12 -> переводим в строковый формат 12 часовой формат часов, иначе -> переводим в строковый формат просто часы
+    # смотрим особые случаи: если время 00:00 -> "полночь", если время 12:00 -> "полдень"
+    # в остальных случаях: если минуты = 0 -> часы + пробел + падеж часов + пробел + время суток + пробел + падеж минут, 
+    # в остальных случаях -> часы + пробел + падеж часов + пробел + минуты + пробел + падеж минут + пробел + время суток
+    # возвращаем итоговый результат
+    time_output = ""
+
+    hours_twelve_format = hours % 12
+    
+    if hours != 12:
+        hours_s = str(hours_twelve_format)
+
+    else:
+        hours_s = str(hours)
+
+    minutes_s = str(minutes)
+
+    space = " "
+
     if hours == 0 and minutes == 0:
-        return 'полночь'
+        time_output = "полночь"
+    
     elif hours == 12 and minutes == 0:
-        return 'полдень'
+        time_output = "полдень"
+    
+    elif minutes == 0:
+        time_output = hours_s + space + padezh_h + space + clock + space + padezh_m
 
-    new_hours, padej_h = hours_case(hours)
-    rovno, padej_m = minuts_case(minutes)
-    vrem_sut = times_of_day(hours)
-
-    if rovno:
-        return f'{new_hours} {padej_h} {vrem_sut} ровно'
     else:
-        return f'{new_hours} {padej_h} {minutes} {padej_m} {vrem_sut}'
+        time_output = hours_s + space + padezh_h + space + minutes_s + space + padezh_m + space + clock
 
+    return time_output
+
+   
 def main():
-    print('Введите время в формате: "часы минуты"')
-    print()
-    input_time = input('Ваше время: ')
-    err_status, text = err(input_time)
-    while err_status:
-        print(text)
-        print('Введите повторно время в формате: "часы минуты"')
-        print()
-        input_time = input('Ваше время: ')
-        err_status, text = err(input_time)
-    hours, minutes = map(int, input_time.split())
-    print(ready_text(hours, minutes))
+    print("Для выхода из программы напишите 'выход'") # выводим пользователю инструкцию, как выйти из программы
+    
+    while True:
+        hours, minutes = check_input() # проверяем ввод
+        
+        if (hours and minutes) == "exit": # если возврат часов и минут = "exit" -> сообщаем пользователю об выходе из программы и завершаем программу
+            print("Выход из программы")
+            break
+        
+        padezh_h = padezh_hours(hours) # определяем падеж часов
+        padezh_m = padezh_minutes(minutes) # определяем падеж минут
+        
+        clock = time_clock(hours) # определяем время суток
 
-if __name__ == '__main__':
+        time_output = full_time_output(hours, minutes, padezh_h, padezh_m, clock) #определяем готовый результат
+
+        print(time_output) # вывод результата
+
+
+if __name__ == "__main__":
     main()
