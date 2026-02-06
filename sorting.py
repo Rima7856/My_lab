@@ -282,6 +282,7 @@ elif mode == 2:
         A = [random.randint(0, 99) for _ in range(n)]
 
     while True:
+        print(f"\nИсходный массив: {A}")
         print("\nВыберите действие:")
         print("1 — Вывести массив")
         print("2 — Сортировка выбором")
@@ -292,23 +293,24 @@ elif mode == 2:
         print("0 — Выход")
 
         action = int(input())
+        A_for_selection = A.copy()
 
         if action == 1:
             print(A)
 
         elif action == 2:
-            A, c, s = selection_sort(A)
-            print(A)
+            A_for_selection, c, s = selection_sort(A_for_selection)
+            print(A_for_selection)
             print("Сравнения:", c, "Перестановки:", s)
 
         elif action == 3:
-            A, c, s = bubble_sort(A)
-            print(A)
+            A_for_selection, c, s = bubble_sort(A_for_selection)
+            print(A_for_selection)
             print("Сравнения:", c, "Перестановки:", s)
 
         elif action == 4:
-            A, c, s = insertion_sort(A)
-            print(A)
+            A_for_selection, c, s = insertion_sort(A_for_selection)
+            print(A_for_selection)
             print("Сравнения:", c, "Перестановки:", s)
 
         elif action == 5:
