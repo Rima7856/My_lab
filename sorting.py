@@ -147,6 +147,8 @@
 # КОНЕЦ
 
 
+
+
 import random
 
 # 1. Функция: Сортировка выбором
@@ -207,6 +209,30 @@ def insertion_sort(A):
     return A, comparisons, swaps
 
 
+def table(s1, p1, s2, p2, s3, p3):
+    # Определяем заголовки
+    h_name = "Метод сортировки"
+    h_comp = "Сравнения"
+    h_swap = "Перестановки"
+    print()
+    print()
+
+    # Рисуем шапку
+    print("-" * 50)
+    # Названия методов выровняем по левому краю (.ljust),
+    # а числа — по правому (.rjust), чтобы они стояли ровными колонками
+    print(f"{h_name.ljust(20)} | {h_comp.rjust(12)} | {h_swap.rjust(12)}")
+    print("-" * 50)
+
+    # Строки данных
+    # Используем str(val).rjust(12) для выравнивания чисел
+    print(f"{'Выбором'.ljust(20)} | {str(s1).rjust(12)} | {str(p1).rjust(12)}")
+    print(f"{'Пузырьком'.ljust(20)} | {str(s2).rjust(12)} | {str(p2).rjust(12)}")
+    print(f"{'Вставками'.ljust(20)} | {str(s3).rjust(12)} | {str(p3).rjust(12)}")
+
+    print("-" * 50)
+
+
 # Главная программа
 print("Выберите режим работы:")
 print("1 — Демонстративный")
@@ -226,19 +252,18 @@ if mode == 1:
     sorted_A1, c1, s1 = selection_sort(A1)
     print("\nСортировка выбором:")
     print(sorted_A1)
-    print("Сравнения:", c1, "Перестановки:", s1)
 
     A2 = A.copy()
     sorted_A2, c2, s2 = bubble_sort(A2)
     print("\nСортировка пузырьком:")
     print(sorted_A2)
-    print("Сравнения:", c2, "Перестановки:", s2)
 
     A3 = A.copy()
     sorted_A3, c3, s3 = insertion_sort(A3)
     print("\nСортировка вставками:")
     print(sorted_A3)
-    print("Сравнения:", c3, "Перестановки:", s3)
+
+    table(c1, s1, c2, s2, c3, s3)
 
 
 # Интерактивный режим
