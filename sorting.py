@@ -288,6 +288,7 @@ elif mode == 2:
         print("3 — Сортировка пузырьком")
         print("4 — Сортировка вставками")
         print("5 — Изменить массив")
+        print("6 - Сортировка 3-мя способами")
         print("0 — Выход")
 
         action = int(input())
@@ -322,6 +323,26 @@ elif mode == 2:
                 k = int(input("Введите индекс: "))
                 value = int(input("Введите новое значение: "))
                 A[k] = value
+
+
+        elif action == 6:
+            A1 = A.copy()
+            sorted_A1, c1, s1 = selection_sort(A1)
+            print("\nСортировка выбором:")
+            print(sorted_A1)
+
+            A2 = A.copy()
+            sorted_A2, c2, s2 = bubble_sort(A2)
+            print("\nСортировка пузырьком:")
+            print(sorted_A2)
+
+            A3 = A.copy()
+            sorted_A3, c3, s3 = insertion_sort(A3)
+            print("\nСортировка вставками:")
+            print(sorted_A3)
+
+            table(c1, s1, c2, s2, c3, s3)
+
 
         elif action == 0:
             break
