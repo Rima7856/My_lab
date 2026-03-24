@@ -34,7 +34,7 @@ class AirTicket:
     @surname.setter
     def surname(self, surname):
         if len(surname.split()) != 1:
-            raise ValueError(f"'Фамилия {surname}' должна состоять из 1 слова")
+            raise ValueError(f"Фамилия '{surname}' должна состоять из 1 слова")
         if not surname.strip().isalpha():
             raise ValueError(f"Фамилия '{surname}' должна состоять только из букв")
         self._surname = surname.strip()
@@ -42,7 +42,7 @@ class AirTicket:
     @country.setter
     def country(self, country):
         if len(country.split()) != 1:
-            raise ValueError(f"'Страна {country}' должна состоять из 1 слова")
+            raise ValueError(f"Страна '{country}' должна состоять из 1 слова")
         if not country.strip().isalpha():
             raise ValueError(f"Страна '{country}' должна состоять только из букв")
         self._country = country
@@ -86,9 +86,6 @@ print(ticket.surname)
 print(ticket.country)
 print(ticket.time_up)
 print(ticket.time_down)
+
 ticket.name = 'Alexander'
-
 print(ticket.name)
-
-
-
